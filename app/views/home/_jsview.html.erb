@@ -1,0 +1,39 @@
+<div class="welcome">
+  <div id="header">
+    <h1>This is the Header</h1>
+  </div>
+  
+  <div id="sidebar">
+    <ul>
+      <li>
+        <a href='#'>Nav #1</a>
+      </li>
+      <li>
+        <a href='#'>Nav #2</a>
+      </li>
+      <li>
+        <a href='#'>Nav #3</a>
+      </li>
+    </ul>
+  </div>
+  
+  <div id="content">
+    <p>
+      Lorem ipsum dolor sit amet,
+      consectetur adipisicing elit, sed do
+      eiusmod tempor incididunt ut labore et
+      dolore magna aliqua.
+    </p>
+    <div class="form">
+      {{#view SC.Button classBinding="isActive"
+        target="SCApp.welcomeController"
+        action="takeOverTheWorld"}}
+        Take over the World!
+      {{/view}}
+    </div>
+  </div>
+  
+  <div id="footer">
+    <p>This is the footer.</p>
+  </div>
+</div> 

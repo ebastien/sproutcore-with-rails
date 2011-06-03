@@ -1,0 +1,28 @@
+/* 
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+  You can use Sass (SCSS) here: http://sass-lang.com/
+*/
+$blueprint_grid_columns: 8;
+$blueprint_grid_width: 40px;
+
+@import "compass/css3";
+@import "blueprint";
+
+.welcome {
+  @include container;
+  @include border-radius(14px, 14px);
+  
+  background-color: #cccccc;
+  font-family: Helvetica;
+
+  #header, #footer {
+    @include column(8);
+  }
+  #sidebar {
+    @include column(3);
+  }
+  #content {
+    @include column(5, true);
+  }
+}
