@@ -2,9 +2,28 @@
 <html>
 <head>
   <title>Railsapp</title>
+  
+  
+  
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "handlebars/welcome.js" %>
+  <!--
+  <%= javascript_include_tag "/javascripts/welcome.js" %>
+  -->
   <%= csrf_meta_tags %>
+  
+  <!--
+  <script type="text/x.handlebars+html" data-template-name="mybutton" src="/templates/mybutton.handlebars"></script>
+  
+  
+  <script type="text/html" data-template-name="mybutton">
+    {{#view SC.Button classBinding="isActive" target="SCApp.welcomeController" action="takeOverTheWorld"}}
+      Take over the World!
+    {{/view}}
+  </script> 
+  -->
+  
 </head>
 <body>
 
