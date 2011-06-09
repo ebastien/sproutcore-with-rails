@@ -25,3 +25,5 @@ gem 'jquery-rails'
 # gem 'ruby-debug'
 
 gem 'compass', :require => false
+
+gem 'sproutcore-rails', :path => '../sproutcore-rails'

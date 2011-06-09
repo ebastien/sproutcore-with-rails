@@ -1,4 +1,3 @@
-/*
 SCApp = SC.Application.create({});
 
 SCApp.welcomeController = SC.Object.create({
@@ -8,11 +7,10 @@ SCApp.welcomeController = SC.Object.create({
 });
 
 SCApp.WelcomeView = SC.View.extend({
-  templateName: 'mybutton'
+  templateName: 'handlebars_welcome'
 });
 
 SC.$(document).ready(function() {
   SCApp.mainView = SCApp.WelcomeView.create();
   SCApp.mainView.append();
 });
-*/
