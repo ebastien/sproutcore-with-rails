@@ -7,7 +7,7 @@ SCApp.welcomeController = SC.Object.create({
 });
 
 SCApp.WelcomeView = SC.View.extend({
-  templateName: 'handlebars_welcome'
+  templateName: 'templates_welcome'
 });
 
 SC.$(document).ready(function() {
