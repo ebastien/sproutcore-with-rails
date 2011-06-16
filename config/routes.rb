@@ -1,6 +1,9 @@
 Railsapp::Application.routes.draw do
-  get "home/index"
+  
+  root :to => 'home#index'
 
+  match '*path', :to => 'errors#routing'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,16 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc3'
-
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
+gem 'rails', '3.1.0.rc4'
 
 # Asset template engines
 gem 'json'
 gem 'sass'
-gem 'coffee-script'
+# gem 'coffee-script'
 gem 'uglifier'
 
 gem 'jquery-rails'
@@ -21,9 +16,12 @@ gem 'jquery-rails'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger
-# gem 'ruby-debug'
-
 gem 'compass', :require => false
 
 gem 'sproutcore-rails', :path => '../sproutcore-rails'
+
+group :development, :test do
+  gem 'rdoc'
+  gem 'ruby-debug'
+  gem 'spork', '~> 0.9.0.rc'
+end
