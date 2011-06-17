@@ -24,4 +24,5 @@ group :development, :test do
   gem 'rdoc'
   gem 'ruby-debug'
   gem 'spork', '~> 0.9.0.rc'
+  gem "rspec-rails", '~> 2.6.1'
 end
