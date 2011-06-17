@@ -7,3 +7,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require sproutcore
+//= require_tree ./templates
+//= require_tree ./ui

@@ -4,9 +4,7 @@
   <title>Railsapp</title>
   
   <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "templates/all" %>
-  <%= javascript_include_tag "/javascripts/welcome.js" %>
+  <%= javascript_include_tag "application", :debug => Rails.env.development? %>
   <%= csrf_meta_tags %>
   
 </head>
