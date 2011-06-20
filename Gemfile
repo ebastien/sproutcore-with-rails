@@ -22,7 +22,11 @@ gem 'sproutcore-rails', :path => '../sproutcore-rails'
 
 group :development, :test do
   gem 'rdoc'
-  gem 'ruby-debug'
+  gem 'jsonpath'
+
+  # Not available with Ruby 1.9.2
+  # gem 'ruby-debug'
+
   gem 'spork', '~> 0.9.0.rc'
   gem "rspec-rails", '~> 2.6.1'
 end
