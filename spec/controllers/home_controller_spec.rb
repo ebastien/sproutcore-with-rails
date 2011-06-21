@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe HomeController do
   describe "GET index" do
-    it "answer with JSON" do
+    it "answers with JSON" do
       get :index, :format => 'json'
       response.content_type.should == Mime::JSON
     end
