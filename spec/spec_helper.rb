@@ -9,6 +9,11 @@ Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
+ 
+end
+
+Spork.each_run do
+  # This code will be run each time you run your specs.
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -31,13 +36,11 @@ Spork.prefork do
     # examples within a transaction, remove the following line or assign false
     # instead of true.
     # config.use_transactional_fixtures = true
+    
+    config.include RequestExampleSupport, :type => :request
+    config.include ControllerExampleSupport, :type => :controller
   end
   
-end
-
-Spork.each_run do
-  # This code will be run each time you run your specs.
-
 end
 
 # --- Instructions ---

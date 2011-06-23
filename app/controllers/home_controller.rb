@@ -1,15 +1,16 @@
 class HomeController < ApplicationController
-  
-  respond_to :html, :json
    
-  def index
+  def show
     @context = {
       :links => [
-        { :rel => "self", :href => root_url },
-        { :rel => "login", :href => root_url }
+        { :rel => "self", :href => home_url },
+        { :rel => "login", :href => login_url }
       ]
     }
-    respond_with(@context)
+    respond_to do |format|
+      format.html
+      format.dsim { render :json => @context }
+    end
   end
 
 end

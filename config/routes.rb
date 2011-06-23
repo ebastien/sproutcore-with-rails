@@ -1,6 +1,7 @@
 Railsapp::Application.routes.draw do
   
-  root :to => 'home#index'
+  resource :home, :only => [:show], :controller => 'home'
+  resource :login, :only => [:create]
 
   match '*path', :to => 'errors#routing'
   

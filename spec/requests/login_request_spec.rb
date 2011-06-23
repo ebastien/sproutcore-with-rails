@@ -1,31 +1,15 @@
 require 'spec_helper'
 
-module MediaHelpers
-  
-  attr_accessor :document
-  
-  def decode!
-    self.document = JSON.parse(response.body)
-  end
-  
-  def link(rel)
-    lnk = JsonPath.on(document, '$..links').flatten.select { |l| l['rel'] == rel }.first
-    lnk && lnk['href']
-  end
-  
-end
-
 describe "login request" do
-  
-  include MediaHelpers
-  
   it "logs me in successfully" do
-    get '/', :format => 'json'
+    api_get
     response.should be_success
     decode!
+
     login_link = link 'login'
     login_link.should be_true
-    get login_link, :format => 'json'
+    
+    api_post login_link, { :login => 'John', :password => 'secret' }
     response.should be_success
     decode!
   end
