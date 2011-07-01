@@ -10,7 +10,7 @@ describe HomeController do
 
       it "contains the login link" do
         api_get :show
-        decode!
+        decode_media! response.body
         link('login').should be_true
       end
     end

@@ -28,5 +28,8 @@ group :development, :test do
   # gem 'ruby-debug'
 
   gem 'spork', '~> 0.9.0.rc'
+  gem "rspec", "~> 2.6.0"
   gem "rspec-rails", '~> 2.6.1'
+  gem "cucumber", "~> 1.0.0"
+  gem "cucumber-rails", "~> 1.0.2"
 end

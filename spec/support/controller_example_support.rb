@@ -1,4 +1,4 @@
-require './spec/support/media_support'
+require 'media_support'
 
 module ControllerExampleSupport
 

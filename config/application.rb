@@ -46,5 +46,15 @@ module Railsapp
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    
+    # Remove unused middlewares from the Rack stack
+    [
+	ActionDispatch::Flash,
+	ActionDispatch::Session::CookieStore,
+	ActionDispatch::Cookies,
+	ActionDispatch::Static
+    ].each do |klass|
+	config.middleware.delete klass
+    end
   end
 end
