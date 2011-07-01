@@ -12,7 +12,6 @@ module RequestExampleSupport
   def api_post(url, body)
     env = {'RAW_POST_DATA' => body.to_json}.reverse_merge! API_DEFAULT_ENV
     post url, nil, env
-    puts "Redirect => #{response.location}"
     api_get response.location if redirect? || response.status == 201
   end
   
