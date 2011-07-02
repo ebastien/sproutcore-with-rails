@@ -2,6 +2,7 @@ Railsapp::Application.routes.draw do
   
   resource :home, :only => [:show], :controller => 'home'
   resource :login, :only => [:create]
+  resource :account, :only => [:show]
 
   match '*path', :to => 'errors#routing'
   

@@ -7,7 +7,7 @@ describe LoginsController do
       api_post :create, { :login => 'John', :password => 'secret' }
       response.content_type.should == API_MIME
       response.status.should == 201
-      response.location.should == home_url
+      response.location.should == account_url
     end
     
     it "should fail for invalid user" do

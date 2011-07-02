@@ -7,7 +7,6 @@ class LoginsController < ApplicationController
   respond_to :dsim
   
   def create
-    
     decode_media! request.raw_post
     login = document["login"]
     password = document["password"]
@@ -16,7 +15,7 @@ class LoginsController < ApplicationController
     respond_to do |format|
       format.dsim {
         if valid_user
-          head :status => :created, :location => home_url
+          head :status => :created, :location => account_url
         else
           head :status => :unauthorized, :location => home_url
         end

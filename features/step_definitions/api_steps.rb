@@ -34,8 +34,7 @@ end
 Then /^I get my account$/ do
   last_response.should be_successful
   decode_media! last_response.body
-  #document["account"].should be_true
-  pending "Missing the account resource"
+  document["account"].should be_true
 end
 
 Then /^I am denied access$/ do
