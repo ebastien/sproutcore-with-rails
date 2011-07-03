@@ -10,7 +10,10 @@ class LoginsController < ApplicationController
     decode_media! request.raw_post
     login = document["login"]
     password = document["password"]
-    valid_user = (login == "John" && password == "secret") 
+    valid_user = (login == "John" && password == "secret")
+    if valid_user
+      cookies.permanent.signed[:remember_token] = ["John ID", "John's salt"]
+    end
     
     respond_to do |format|
       format.dsim {

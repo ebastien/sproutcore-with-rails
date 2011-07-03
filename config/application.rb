@@ -51,7 +51,6 @@ module Railsapp
     [
 	ActionDispatch::Flash,
 	ActionDispatch::Session::CookieStore,
-	ActionDispatch::Cookies,
 	ActionDispatch::Static
     ].each do |klass|
 	config.middleware.delete klass

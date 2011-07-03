@@ -8,6 +8,7 @@ describe LoginsController do
       response.content_type.should == API_MIME
       response.status.should == 201
       response.location.should == account_url
+      response.cookies['remember_token'].should be_true
     end
     
     it "should fail for invalid user" do
@@ -15,6 +16,7 @@ describe LoginsController do
       response.content_type.should == API_MIME
       response.status.should == 401
       response.location.should == home_url
+      response.cookies['remember_token'].should be_false
     end
   end
 end
