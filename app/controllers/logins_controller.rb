@@ -8,21 +8,22 @@ class LoginsController < ApplicationController
   
   def create
     decode_media! request.raw_post
-    login = document["login"]
-    password = document["password"]
-    valid_user = (login == "John" && password == "secret")
-    if valid_user
-      cookies.permanent.signed[:remember_token] = ["John ID", "John's salt"]
-    end
-    
+    log_user_in document["login"], document["password"]
     respond_to do |format|
-      format.dsim {
-        if valid_user
+      format.dsim do
+        if logged_in?
           head :status => :created, :location => account_url
         else
           head :status => :unauthorized, :location => home_url
         end
-      }
+      end
+    end
+  end
+  
+  def destroy
+    log_user_out
+    respond_to do |format|
+      format.dsim { head :reset_content }
     end
   end
 

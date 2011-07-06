@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   
   rescue_from Exception, :with => :catch_internal_error
   
+  include LoginsHelper
+  
   private
   
   def catch_internal_error(exception)

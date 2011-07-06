@@ -14,9 +14,14 @@ Feature: Authentication
     When I login as "TheBadGuy" with password "mooohahaha"
     Then I am denied access
   
-  @wip
   Scenario: Logout from the API
     Given I am connected to the API
     When I login as "John" with password "secret"
     And I logout from the API
     Then I am not authenticated
+
+  Scenario: Account access without authentication
+    Given I am connected to the API
+    When I force access to my account
+    Then I am denied access
+    

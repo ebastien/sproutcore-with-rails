@@ -59,6 +59,9 @@ end
 
 Then /^I am not authenticated$/ do
   last_response.should be_successful
-  decode_media! last_response.body
-  rack_mock_session.cookie_jar['remember_token'].should be_false
+  rack_mock_session.cookie_jar['remember_token'].should be_blank
+end
+
+When /^I force access to my account$/ do
+  api_get '/account'
 end
