@@ -24,5 +24,11 @@ $blueprint_grid_width: 40px;
   }
   #content {
     @include column(5, true);
+    
+    .form {
+      .field {
+        label { @include column(2); }
+      }
+    }
   }
 }
