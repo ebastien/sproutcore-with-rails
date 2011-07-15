@@ -17,7 +17,9 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 gem 'sass-rails', '~> 3.1.0.rc4'
-gem 'compass', :git => 'https://github.com/chriseppstein/compass.git', :branch => 'rails31'
+# gem 'compass', :git => 'https://github.com/chriseppstein/compass.git', :branch => 'rails31'
+# FIXME: Manual checkout because of bug https://github.com/carlhuda/bundler/issues/1239
+gem 'compass', :path => '../compass'
 gem 'fancy-buttons'
 
 gem 'sproutcore-rails', :path => '../sproutcore-rails'

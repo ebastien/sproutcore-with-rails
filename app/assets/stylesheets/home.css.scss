@@ -12,6 +12,10 @@ $blueprint_grid_width: 40px;
 @import "blueprint";
 @import "fancy-buttons";
 
+$content_font: 'Trebuchet MS', Helvetica, sans-serif;
+$header_font: Georgia, serif;
+$logo_img: "rails.png";
+
 body {
   padding-top: 20px;
 }
@@ -24,12 +28,12 @@ body {
   padding: 10px;
   
   background-color: #E5E5E5;
-  font-family: "Trebuchet MS";
+  font-family: $content_font;
   font-size: 1em;
     
   h1 {
     font-size: 2em;
-    font-family: Georgia;
+    font-family: $header_font;
     font-style: italic;
   }
   
@@ -53,7 +57,6 @@ body {
     @include column(2);
     
     .logo {
-      $logo_img: "rails.png";
       background: asset_url($logo_img, image) no-repeat;
       width: image-width($logo_img);
       height: image-height($logo_img);
@@ -62,25 +65,29 @@ body {
   
   #content {
     @include column(6, true);
+  }
+
+  .form {
+    @include no-bullets;
+  }
+
+  .field {
+    @include float-left;
+    margin: 4px 0;
     
-    .form {
-      @include no-bullets;
+    label {
+      @include column(2);
+      margin-top: 3px;
+    }
+    
+    input {
+      @include column(3);
+      @include box-sizing(border-box);
+      @include border-radius(5px, 5px);
       
-      .field {
-        @include float-left;
-        margin: 4px 0;
-        
-        label { @include column(2); }
-        input {
-          @include column(3);
-          @include box-sizing(border-box);
-          @include border-radius(3px, 3px);
-          
-          &.button {
-            @include fancy-button(#7F7F7F);
-            font-family: "Trebuchet MS";
-          }
-        }
+      &.button {
+        @include fancy-button(#1BD51A);
+        font-family: $content_font;
       }
     }
   }
