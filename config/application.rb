@@ -47,13 +47,18 @@ module Railsapp
     # Enable the asset pipeline
     config.assets.enabled = true
     
+    # SASS load paths for Compass
+    config.sass.load_paths << "#{Gem.loaded_specs['compass'].full_gem_path}/frameworks/compass/stylesheets"
+    config.sass.load_paths << "#{Gem.loaded_specs['compass'].full_gem_path}/frameworks/blueprint/stylesheets"
+    config.sass.load_paths << "#{Gem.loaded_specs['fancy-buttons'].full_gem_path}/lib/stylesheets"
+    
     # Remove unused middlewares from the Rack stack
     [
-	ActionDispatch::Flash,
-	ActionDispatch::Session::CookieStore,
-	ActionDispatch::Static
+      ActionDispatch::Flash,
+      ActionDispatch::Session::CookieStore,
+      ActionDispatch::Static
     ].each do |klass|
-	config.middleware.delete klass
+      config.middleware.delete klass
     end
   end
 end

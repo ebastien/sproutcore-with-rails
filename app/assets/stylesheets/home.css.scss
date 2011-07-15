@@ -6,28 +6,81 @@
 $blueprint_grid_columns: 8;
 $blueprint_grid_width: 40px;
 
+@import "compass/reset";
 @import "compass/css3";
+@import "compass/typography/lists/bullets";
 @import "blueprint";
+@import "fancy-buttons";
+
+body {
+  padding-top: 20px;
+}
 
 .welcome {
   @include container;
   @include border-radius(14px, 14px);
+  @include single-box-shadow(#1E90FF);
   
-  background-color: #cccccc;
-  font-family: Helvetica;
+  padding: 10px;
+  
+  background-color: #E5E5E5;
+  font-family: "Trebuchet MS";
+  font-size: 1em;
+    
+  h1 {
+    font-size: 2em;
+    font-family: Georgia;
+    font-style: italic;
+  }
+  
+  p {
+    margin-bottom: 10px;
+  }
 
-  #header, #footer {
-    @include column(8);
+  #header {
+    @include column(8, true);
+    margin-bottom: 20px;
   }
+  
+  #footer {
+    @include column(8, true);
+    margin-top: 10px;
+    
+    font-size: 0.7em;
+  }
+  
   #sidebar {
-    @include column(3);
+    @include column(2);
+    
+    .logo {
+      $logo_img: "rails.png";
+      background: asset_url($logo_img, image) no-repeat;
+      width: image-width($logo_img);
+      height: image-height($logo_img);
+    }
   }
+  
   #content {
-    @include column(5, true);
+    @include column(6, true);
     
     .form {
+      @include no-bullets;
+      
       .field {
+        @include float-left;
+        margin: 4px 0;
+        
         label { @include column(2); }
+        input {
+          @include column(3);
+          @include box-sizing(border-box);
+          @include border-radius(3px, 3px);
+          
+          &.button {
+            @include fancy-button(#7F7F7F);
+            font-family: "Trebuchet MS";
+          }
+        }
       }
     }
   }
