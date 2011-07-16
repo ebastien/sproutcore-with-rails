@@ -67,7 +67,7 @@ body {
     @include column(6, true);
   }
 
-  .form {
+  form {
     @include no-bullets;
   }
 

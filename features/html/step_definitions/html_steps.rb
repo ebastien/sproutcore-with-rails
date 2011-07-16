@@ -1,3 +1,14 @@
+
+module CookieSupport
+  def cookie_jar
+    driver = Capybara.current_session.driver
+    # FIXME: It only works for RackTest
+    driver.browser.current_session.instance_variable_get(:@rack_mock_session).cookie_jar
+  end
+end
+
+World(CookieSupport)
+
 Given /^I am on the home page$/ do
   visit '/home'
 end
@@ -9,9 +20,9 @@ When /^I login as "([^"]*)" with password "([^"]*)"$/ do |login, password|
 end
 
 Then /^I am authenticated$/ do
-  pending # express the regexp above with the code you wish you had
+  cookie_jar['remember_token'].should be_true
 end
 
 Then /^I get my account$/ do
-  pending # express the regexp above with the code you wish you had
+  page.should have_css '.account'
 end

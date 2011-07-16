@@ -14,8 +14,8 @@
         and experiment a RESTFul (i.e hypermedia-driven) web service driving
         SproutCore controllers or statecharts.
       </p>
-      <%= form_tag do %>
-        <ul class="form">
+      <%= form_tag(login_path) do %>
+        <ul>
           <li class="field"><%= label_tag(:login, "Login") %> <%= text_field_tag(:login) %></li>
           <li class="field"><%= label_tag(:password, "Password") %> <%= password_field_tag(:password) %></li>
           <li class="field"><%= submit_tag "Log me in", :id => :log_me_in, :class => :button %></li>

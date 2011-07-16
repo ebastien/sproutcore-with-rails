@@ -12,7 +12,7 @@ module APISupport
   def api_post(url, body)
     env = {'RAW_POST_DATA' => body.to_json}.reverse_merge! API_DEFAULT_ENV
     post url, nil, env
-    api_get last_response.location if redirect? || last_response.status == 201
+    api_get last_response.location if [201, 303].include? last_response.status
   end
   
   def api_delete(url)

@@ -4,19 +4,32 @@ class LoginsController < ApplicationController
   
   include MediaSupport
   
+  skip_before_filter :verify_authenticity_token, :only => [:create]
+  
   respond_to :dsim
   
   def create
-    decode_media! request.raw_post
-    log_user_in document["login"], document["password"]
+    if Mime::Type.lookup(request.format) == Mime::DSIM
+      decode_media! request.raw_post
+      log_user_in document["login"], document["password"]
+    else
+      log_user_in params["login"], params["password"]
+    end
+    
     respond_to do |format|
+    
+      format.html do
+        head :status => :see_other, :location => account_url
+      end
+      
       format.dsim do
         if logged_in?
-          head :status => :created, :location => account_url
+          head :status => :see_other, :location => account_url
         else
           head :status => :unauthorized, :location => home_url
         end
       end
+      
     end
   end
   

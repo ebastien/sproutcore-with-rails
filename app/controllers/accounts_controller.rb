@@ -5,6 +5,7 @@ class AccountsController < ApplicationController
   def show
     @context = { :account => {} }
     respond_to do |format|
+      format.html
       format.dsim do
         if logged_in?
           render :json => @context
