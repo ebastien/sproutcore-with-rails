@@ -26,3 +26,20 @@ end
 Then /^I get my account$/ do
   page.should have_css '.account'
 end
+
+Then /^I am denied access$/ do
+  page.should have_css '.welcome'
+end
+
+When /^I logout$/ do
+  click_button 'log_me_out'
+end
+
+Then /^I am not authenticated$/ do
+  page.should have_css '.welcome'
+  rack_mock_session.cookie_jar['remember_token'].should be_blank
+end
+
+When /^I force access to my account$/ do
+  visit '/account'
+end

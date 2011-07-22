@@ -1,2 +1,5 @@
 <div class="account">
+  <%= form_tag(login_path, :method => "delete") do %>
+    <%= submit_tag "Log me out", :id => :log_me_out, :class => :button %>
+  <% end %>
 </div>

@@ -29,6 +29,13 @@ describe AccountsController do
         response.status.should == 200
         response.should render_template('show')
       end
+      
+      it "should deny access on authentication failure" do
+        get :show
+        response.content_type.should == Mime::HTML
+        response.status.should == 303 #See other
+        response.location.should == home_url
+      end
     end
   end
 end

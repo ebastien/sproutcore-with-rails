@@ -19,7 +19,11 @@ class LoginsController < ApplicationController
     respond_to do |format|
     
       format.html do
-        head :status => :see_other, :location => account_url
+        if logged_in?
+          head :status => :see_other, :location => account_url
+        else
+          head :status => :see_other, :location => home_url
+        end
       end
       
       format.dsim do
@@ -36,6 +40,7 @@ class LoginsController < ApplicationController
   def destroy
     log_user_out
     respond_to do |format|
+      format.html { head :status => :see_other, :location => home_url }
       format.dsim { head :reset_content }
     end
   end

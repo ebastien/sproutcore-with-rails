@@ -43,6 +43,24 @@ describe LoginsController do
         response.cookies['remember_token'].should_not be_blank
         controller.logged_user.should == "John"
       end
+      
+      it "should fail for invalid user" do
+        post :create, :login => 'TheBadGuy', :password => 'mooohahaha'
+        response.status.should == 303 #See other
+        response.location.should == home_url
+        response.cookies['remember_token'].should be_nil
+        controller.should_not be_logged_in
+      end
+    end
+    
+    describe "DELETE login" do
+      it "should remove cookie for authenticated user" do
+        controller.force_user_in "John"
+        post :destroy
+        response.status.should == 303 #See other
+        response.headers['Set-Cookie'].should =~ /^remember_token=;/
+        controller.should_not be_logged_in
+      end
     end
   end
 end
