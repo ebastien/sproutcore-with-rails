@@ -4,23 +4,26 @@ Feature: HTML authentication
   I want to authenticate users
   
   Scenario: Login with valid credentials
-    Given I am on the home page
+    Given I am not logged in
     When I login as "John" with password "secret"
     Then I get my account
-    And I am authenticated
     
   Scenario: Login with invalid credentials
-    Given I am on the home page
+    Given I am not logged in
     When I login as "TheBadGuy" with password "mooohahaha"
-    Then I am denied access
+    Then I don't get my account
   
   Scenario: Logout
-    Given I am on the home page
-    When I login as "John" with password "secret"
-    And I logout
-    Then I am not authenticated
+    Given I am logged in
+    When I logout
+    Then I am denied access to my account
 
   Scenario: Account access without authentication
-    Given I am on the home page
-    When I force access to my account
-    Then I am denied access
+    Given I am not logged in
+    When I visit my account
+    Then I don't get my account
+
+  Scenario: Persistent authentication
+    Given I am logged in
+    When I visit the home page
+    Then I am granted access to my account
