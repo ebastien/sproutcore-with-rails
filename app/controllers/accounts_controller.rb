@@ -3,7 +3,13 @@ class AccountsController < ApplicationController
   respond_to :dsim
   
   def show
-    @context = { :account => {} }
+    @context = {
+      :account => {},
+      :links => [
+        { :rel => "self", :href => account_url },
+        { :rel => "login", :href => login_url }
+      ]
+    }
     respond_to do |format|
       format.html do
         if logged_in?

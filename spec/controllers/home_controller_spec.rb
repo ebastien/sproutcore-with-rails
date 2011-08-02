@@ -8,6 +8,7 @@ describe HomeController do
         response.content_type.should == API_MIME
         response.status.should == 200
         decode_media! response.body
+        link('self').should be_true
         link('login').should be_true
       end
     end

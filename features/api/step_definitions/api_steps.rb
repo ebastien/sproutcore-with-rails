@@ -23,45 +23,56 @@ end
 
 World(APISupport)
 
-Given /^I am connected to the API$/ do
+Given "I am not logged in" do
   api_get
   last_response.should be_successful
   decode_media! last_response.body
 end
 
-When /^I login as "([^"]*)" with password "([^"]*)"$/ do |login, password|
+When %q{I login as "$login" with password "$password"} do |login, password|
   @login_link = link 'login'
   @login_link.should be_true
   api_post @login_link, { :login => login, :password => password }
 end
 
-Then /^I am authenticated$/ do
-  last_response.should be_successful
-  decode_media! last_response.body
-  rack_mock_session.cookie_jar['remember_token'].should be_true
-end
-
-Then /^I get my account$/ do
+Then "I get my account" do
   last_response.should be_successful
   decode_media! last_response.body
   document["account"].should be_true
 end
 
-Then /^I am denied access$/ do
+Then "I don't get my account" do
   last_response.status.should ==  401
 end
 
-When /^I logout from the API$/ do
+When "I visit my account" do
+  api_get '/account'
+end
+
+When "I visit the home page" do
+  api_get
+  last_response.should be_successful
+  decode_media! last_response.body
+end
+
+When "I logout" do
   @login_link = link 'login'
   @login_link.should be_true
   api_delete @login_link
 end
 
-Then /^I am not authenticated$/ do
-  last_response.should be_successful
-  rack_mock_session.cookie_jar['remember_token'].should be_blank
+Given "I am logged in" do
+  Given "I am not logged in"
+  When %q{I login as "John" with password "secret"}
+  Then "I get my account"
 end
 
-When /^I force access to my account$/ do
-  api_get '/account'
+Then "I am denied access to my account" do
+  When "I visit my account"
+  Then "I don't get my account"
+end
+
+Then "I am granted access to my account" do
+  When "I visit my account"
+  Then "I get my account"
 end

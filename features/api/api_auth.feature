@@ -3,25 +3,27 @@ Feature: Authentication
   And to provide users with a persistent account
   I want to authenticate users
   
-  Scenario: Login with valid credentials on the API
-    Given I am connected to the API
+  Scenario: Login with valid credentials
+    Given I am not logged in
     When I login as "John" with password "secret"
-    Then I am authenticated
-    And I get my account
+    Then I get my account
 
-  Scenario: Login with invalid credentials on the API
-    Given I am connected to the API
+  Scenario: Login with invalid credentials
+    Given I am not logged in
     When I login as "TheBadGuy" with password "mooohahaha"
-    Then I am denied access
+    Then I don't get my account
   
-  Scenario: Logout from the API
-    Given I am connected to the API
-    When I login as "John" with password "secret"
-    And I logout from the API
-    Then I am not authenticated
+  Scenario: Logout
+    Given I am logged in
+    When I logout
+    Then I am denied access to my account
 
   Scenario: Account access without authentication
-    Given I am connected to the API
-    When I force access to my account
-    Then I am denied access
-    
+    Given I am not logged in
+    When I visit my account
+    Then I don't get my account
+
+  Scenario: Persistent authentication
+    Given I am logged in
+    When I visit the home page
+    Then I am granted access to my account
