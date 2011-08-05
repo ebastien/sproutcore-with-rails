@@ -1,8 +1,18 @@
+$.ajaxSetup({
+  cache: false,
+  dataType: 'json',
+  accepts: { json: "application/vnd.dsim+json;version=1" }
+});
+
 SCApp = SC.Application.create({});
 
 SCApp.welcomeController = SC.Object.create({
   takeOverTheWorld: function() {
-    alert("Done!");
+    $.ajax({ url: '/home' }).done(
+      function(response) {
+        // Do something interesting
+      }
+    );
   }
 });
 
