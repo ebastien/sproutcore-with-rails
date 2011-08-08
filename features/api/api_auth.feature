@@ -16,12 +16,11 @@ Feature: Authentication
   Scenario: Logout
     Given I am logged in
     When I logout
-    Then I am denied access to my account
+    Then I am denied direct access to my account
 
   Scenario: Account access without authentication
     Given I am not logged in
-    When I visit my account
-    Then I don't get my account
+    Then I am denied direct access to my account
 
   Scenario: Persistent authentication
     Given I am logged in

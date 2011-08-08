@@ -45,10 +45,6 @@ Then "I don't get my account" do
   last_response.status.should ==  401
 end
 
-When "I visit my account" do
-  api_get '/account'
-end
-
 When "I visit the home page" do
   api_get
   last_response.should be_successful
@@ -67,12 +63,14 @@ Given "I am logged in" do
   Then "I get my account"
 end
 
-Then "I am denied access to my account" do
-  When "I visit my account"
+Then "I am denied direct access to my account" do
+  api_get '/account'
   Then "I don't get my account"
 end
 
 Then "I am granted access to my account" do
-  When "I visit my account"
+  @account_link = link 'account'
+  @account_link.should be_true
+  api_get @account_link
   Then "I get my account"
 end
